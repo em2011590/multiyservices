@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+/* ─── Design Tokens ──────────────────────────────── */
+@theme {
+  --color-background: #0a0a0f;
+  --color-foreground: #f0f0f0;
+  --color-pageBg: #0a0a0f;
+  --color-card: #13131a;
+  --color-sidebar: #1a1a2e;
+  --color-primary: #f0f0f0;
+  --color-muted: #6b7280;
+
+  --color-accent-cyan: #00f5ff;
+  --color-accent-violet: #8b5cf6;
+  --color-accent-green: #39ff14;
+  --color-accent-amber: #f59e0b;
+
+  --font-sans: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+/* ─── Glass Utility ──────────────────────────────── */
+@layer utilities {
+  .glass {
+    background: rgba(255, 255, 255, 0.04);
+    /* Reduced from 12px → 8px: backdrop-filter is GPU-composited on every element */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    /* Promote to its own compositor layer to avoid repaints */
+    will-change: transform;
+  }
+  .glass-glow {
+    box-shadow: 0 0 20px rgba(0, 245, 255, 0.15);
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  /* Used in CodeTranslator idle spinner */
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+  .animate-spin-slow {
+    animation: spin-slow 8s linear infinite;
+    /* GPU-accelerated rotation */
+    will-change: transform;
+  }
+}
+
+/* ─── Base Styles ────────────────────────────────── */
+:root {
+  --background: #0a0a0f;
+  --foreground: #f0f0f0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-sans, system-ui, sans-serif);
+  /* Prevent subpixel painting overhead on dark backgrounds */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Scrollbar ──────────────────────────────────── */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.02); }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.2); }
