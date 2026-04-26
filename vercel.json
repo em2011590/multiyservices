@@ -16,6 +16,5 @@
     "CLOUDINARY_API_SECRET": "@cloudinary_api_secret",
     "NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME": "@next_public_cloudinary_cloud_name",
     "NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET": "@next_public_cloudinary_upload_preset"
-  },
-  "buildOutputDirectory": ".next"
+  }
 }
